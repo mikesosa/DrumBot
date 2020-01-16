@@ -127,7 +127,8 @@ var view = {
         // The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page.
         document.getElementById("startButton").onclick =  function() {
             mouse_IsDown = true;
-            if (Tone.context.state !== 'running') {
+            // If firefox, it's trigered too.
+            if (Tone.context.state !== 'running' || navigator.appVersion.length < 12) {
                 Tone.context.resume();
                 controller.sequencer();
             }
