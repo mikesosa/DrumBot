@@ -125,13 +125,16 @@ var view = {
     init: () => {
         controller.fetchGenres();
         // The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page.
-        document.getElementById("startButton").onclick =  function() {
-            mouse_IsDown = true;
-            // If firefox, it's trigered too.
+        document.getElementById("audioButton").onclick = function() {
             if (Tone.context.state !== 'running') {
                 Tone.context.resume();
                 controller.sequencer();
             }
+        }
+        document.getElementById("startButton").onclick =  function() {
+            mouse_IsDown = true;
+            // If firefox, it's trigered too.
+
             // console.log(Tone.setContext(audioContext));
             console.log("started");
             Tone.Transport.start();
@@ -209,3 +212,4 @@ var view = {
 }
 
 controller.init();
+$('#alertModal').modal('show');
