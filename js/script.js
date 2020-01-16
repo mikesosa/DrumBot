@@ -128,10 +128,11 @@ var view = {
         document.getElementById("startButton").onclick =  function() {
             mouse_IsDown = true;
             // If firefox, it's trigered too.
-            if (Tone.context.state !== 'running' || navigator.appVersion.length < 12) {
+            if (Tone.context.state !== 'running') {
                 Tone.context.resume();
                 controller.sequencer();
             }
+            // console.log(Tone.setContext(audioContext));
             console.log("started");
             Tone.Transport.start();
         };
